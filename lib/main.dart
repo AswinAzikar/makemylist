@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
         initialRoute: AppRoutes.home,
         onGenerateRoute: AppRoutes.generateRoute,
         title: 'Flutter Demo',
+        //TODO: theme update
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
