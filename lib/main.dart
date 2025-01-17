@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:makemylist/routes/app_routes.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'views/home_view.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        initialRoute: AppRoutes.home,
-        onGenerateRoute: AppRoutes.generateRoute,
-        title: 'Flutter Demo',
-        //TODO: theme update
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          useMaterial3: true,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => ),
         ),
-        home: Scaffold(
-          body: Center(
-            child: Text("to be Implmented"),
-          ),
-          backgroundColor: Colors.amberAccent,
-        ));
+      ],
+      child: MaterialApp(
+        home: HomeView(),
+      ),
+    );
   }
 }
