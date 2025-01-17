@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:makemylist/viewmodels/todo_view_model.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:makemylist/bloc/todo_bloc.dart';
+import 'package:makemylist/models/todo_model.dart';
 
 class ModalBottomSheet extends StatelessWidget {
   final _titleController = TextEditingController();
   final _descriptionController = TextEditingController();
+
+  ModalBottomSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +37,10 @@ class ModalBottomSheet extends StatelessWidget {
                   final title = _titleController.text;
                   final description = _descriptionController.text;
                   if (title.isNotEmpty && description.isNotEmpty) {
-                    context.read<TodoViewModel>().addTodo(title, description);
+                    context.read<TodoBloc>().add(
+                          AddTodoEvent(TodoModel(
+                              title: title, description: description)),
+                        );
                     Navigator.pop(context);
                   }
                 },
