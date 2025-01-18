@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:makemylist/views/home_view.dart';
 
 class AppRoutes {
   static const String home = "/";
@@ -6,11 +7,7 @@ class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case home:
-        return MaterialPageRoute(
-          builder: (context) => Center(
-            child: Text("home will be here"),
-          ),
-        );
+        return MaterialPageRoute(builder: (context) => HomeView());
 
       default:
         return MaterialPageRoute(
