@@ -58,7 +58,27 @@ class HomeView extends StatelessWidget {
                                       BorderRadius.circular(paddingLarge.h)),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [Text(todo.title)],
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(todo.title),
+                                      SingleChildScrollView(
+                                          child: Text(todo.description)),
+                                    ],
+                                  ),
+                                  Spacer(),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      ElevatedButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: Text("ok")),
+                                    ],
+                                  )
+                                ],
                               ),
                             ),
                           ),
