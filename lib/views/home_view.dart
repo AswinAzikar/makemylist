@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:makemylist/bloc/todo_bloc.dart';
+import 'package:makemylist/extensions/extensions.dart';
 import 'package:makemylist/utils/constants.dart';
 import 'package:makemylist/utils/size_utils.dart';
 import 'package:makemylist/widgets/modal_bottom_sheet.dart';
@@ -9,7 +10,7 @@ import 'package:makemylist/widgets/modal_bottom_sheet.dart';
 class HomeView extends StatelessWidget {
   HomeView({super.key});
 
-  final containerHeight = SizeUtils.height * .1;
+  final containerHeight = SizeUtils.height * .15;
 
   @override
   Widget build(BuildContext context) {
@@ -86,20 +87,47 @@ class HomeView extends StatelessWidget {
                         );
                       },
                       child: Container(
+                        padding: EdgeInsetsDirectional.symmetric(
+                            vertical: padding, horizontal: paddingLarge),
+                        width: double.maxFinite,
                         height: containerHeight,
                         decoration: BoxDecoration(
                           boxShadow: constShadow,
                           borderRadius: BorderRadius.circular(paddingLarge),
                           color: Colors.amber,
-                        ),
-                        child: ListTile(
-                          title: Text(todo.title),
-                          subtitle: Text(
-                            todo.description,
-                            softWrap: true,
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
+                        )
+
+                        // child: ListTile(
+                        //   title: Text(todo.title,),
+                        //   subtitle: Text(
+                        //     todo.description,
+                        //     softWrap: true,
+                        //     maxLines: 1,
+                        //     overflow: TextOverflow.ellipsis,
+                        //   ),
+                        // ),
+                        ,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: SizeUtils.width / 1.4,
+                              child: Text(
+                                overflow: TextOverflow.ellipsis,
+                                todo.title,
+                                style: context.robotoBold18
+                                    .copyWith(fontSize: 20.fSize),
+                              ),
+                            ),
+                            Divider(
+                              color: Colors.grey,
+                            ),
+                            Text(
+                              todo.description,
+                              style: context.robotoItalic18
+                                  .copyWith(fontSize: 18.fSize),
+                            )
+                          ],
                         ),
                       ),
                     ),
