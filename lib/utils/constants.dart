@@ -22,10 +22,10 @@ final gapTiny = Gap(paddingTiny.h);
 
 List<BoxShadow> constShadow = [
   BoxShadow(
-    color: Colors.black.withOpacity(0.2),
-    spreadRadius: 2,
-    blurRadius: 10,
-    offset: const Offset(0, 5), // changes position of shadow
+    color: Colors.grey.withOpacity(0.5),
+    spreadRadius: 0,
+    blurRadius: 5,
+    offset: Offset(0, 3),
   ),
 ];
 
