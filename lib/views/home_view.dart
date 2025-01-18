@@ -4,7 +4,6 @@ import 'package:makemylist/bloc/todo_bloc.dart';
 
 import 'package:makemylist/widgets/modal_bottom_sheet.dart';
 
-
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
@@ -39,10 +38,7 @@ class HomeView extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => showModalBottomSheet(
-          context: context,
-          builder: (_) => ModalBottomSheet(),
-        ),
+        onPressed: () => ModalBottomSheet.show(context),
         child: Icon(Icons.add),
       ),
     );
