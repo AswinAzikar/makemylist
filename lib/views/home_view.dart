@@ -53,9 +53,10 @@ class HomeView extends StatelessWidget {
                               height: SizeUtils.height * 0.2,
                               width: double.maxFinite,
                               decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius:
-                                      BorderRadius.circular(paddingLarge.h)),
+                                color: Colors.white,
+                                borderRadius:
+                                    BorderRadius.circular(paddingLarge.h),
+                              ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
