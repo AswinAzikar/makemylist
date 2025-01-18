@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makemylist/bloc/todo_bloc.dart';
 import 'package:makemylist/models/todo_model.dart';
+import 'package:makemylist/widgets/controllers/controllers.dart';
 
 class ModalBottomSheet {
   static void show(BuildContext context) {
-    final _titleController = TextEditingController();
-    final _descriptionController = TextEditingController();
-
+  
     showModalBottomSheet(
       context: context,
       isScrollControlled:
@@ -28,7 +27,7 @@ class ModalBottomSheet {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextField(
-                controller: _titleController,
+                controller: titleController,
                 decoration: InputDecoration(
                   labelText: 'Title',
                   border: OutlineInputBorder(),
@@ -36,7 +35,7 @@ class ModalBottomSheet {
               ),
               SizedBox(height: 16.0),
               TextField(
-                controller: _descriptionController,
+                controller: descriptionController,
                 decoration: InputDecoration(
                   labelText: 'Description',
                   border: OutlineInputBorder(),
@@ -52,8 +51,8 @@ class ModalBottomSheet {
                   ),
                   ElevatedButton(
                     onPressed: () {
-                      final title = _titleController.text;
-                      final description = _descriptionController.text;
+                      final title = titleController.text;
+                      final description = descriptionController.text;
                       if (title.isNotEmpty && description.isNotEmpty) {
                         context.read<TodoBloc>().add(
                               AddTodoEvent(

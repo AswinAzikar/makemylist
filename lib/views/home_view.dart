@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lucide_icons/lucide_icons.dart';
 import 'package:makemylist/bloc/todo_bloc.dart';
 
 import 'package:makemylist/widgets/modal_bottom_sheet.dart';
@@ -24,9 +25,22 @@ class HomeView extends StatelessWidget {
                   onDismissed: (direction) {
                     context.read<TodoBloc>().add(DeleteTodoEvent(todo.id!));
                   },
-                  child: ListTile(
-                    title: Text(todo.title),
-                    subtitle: Text(todo.description),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.amber,
+                      ),
+                      child: ListTile(
+                        title: Text(todo.title),
+                        subtitle: Text(
+                          todo.description,
+                          softWrap: true,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                    ),
                   ),
                 );
               },
@@ -39,7 +53,7 @@ class HomeView extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () => ModalBottomSheet.show(context),
-        child: Icon(Icons.add),
+        child: Icon(LucideIcons.pencil),
       ),
     );
   }
