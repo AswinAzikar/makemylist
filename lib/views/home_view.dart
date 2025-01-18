@@ -5,7 +5,9 @@ import 'package:makemylist/bloc/todo_bloc.dart';
 import 'package:makemylist/extensions/extensions.dart';
 import 'package:makemylist/utils/constants.dart';
 import 'package:makemylist/utils/size_utils.dart';
-import 'package:makemylist/widgets/modal_bottom_sheet.dart';
+import 'package:makemylist/widgets/modal_bottom_screen/modal_bottom_sheet.dart';
+
+import '../widgets/dismissible_widget/dismiss_background.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -30,11 +32,11 @@ class HomeView extends StatelessWidget {
                     behavior: HitTestBehavior.translucent,
                     key: Key(todo.id.toString()),
                     direction: DismissDirection.horizontal,
-                    background: dismissBackground(
+                    background: DismissBackground(
                       alignment: Alignment.centerLeft,
                       icon: LucideIcons.delete,
                     ),
-                    secondaryBackground: dismissBackground(
+                    secondaryBackground: DismissBackground(
                       alignment: Alignment.centerRight,
                       icon: LucideIcons.delete,
                     ),
@@ -126,6 +128,8 @@ class HomeView extends StatelessWidget {
                               todo.description,
                               style: context.robotoItalic18
                                   .copyWith(fontSize: 18.fSize),
+                              maxLines: 2,
+                              overflow: TextOverflow.ellipsis,
                             )
                           ],
                         ),
@@ -148,21 +152,21 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  Widget dismissBackground({
-    required Alignment alignment,
-    required IconData icon,
-  }) {
-    return Container(
-      alignment: alignment,
-      padding: EdgeInsets.symmetric(horizontal: padding),
-      decoration: BoxDecoration(
-        color: Colors.red,
-        borderRadius: BorderRadius.circular(paddingLarge),
-      ),
-      child: Icon(
-        icon,
-        color: Colors.white,
-      ),
-    );
-  }
+  // Widget dismissBackground({
+  //   required Alignment alignment,
+  //   required IconData icon,
+  // }) {
+  //   return Container(
+  //     alignment: alignment,
+  //     padding: EdgeInsets.symmetric(horizontal: padding),
+  //     decoration: BoxDecoration(
+  //       color: Colors.red,
+  //       borderRadius: BorderRadius.circular(paddingLarge),
+  //     ),
+  //     child: Icon(
+  //       icon,
+  //       color: Colors.white,
+  //     ),
+  //   );
+  // }
 }

@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:makemylist/bloc/todo_bloc.dart';
 import 'package:makemylist/models/todo_model.dart';
 import 'package:makemylist/utils/size_utils.dart';
-import 'package:makemylist/widgets/controllers/controllers.dart';
+import 'package:makemylist/widgets/modal_bottom_screen/controllers/controllers.dart';
 
 class ModalBottomSheet {
   static void show(BuildContext context) {
