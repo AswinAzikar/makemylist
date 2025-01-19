@@ -29,6 +29,7 @@ List<BoxShadow> constShadow = [
   ),
 ];
 
+Color primaryColor = const Color.fromARGB(255, 26, 137, 161);
 LinearGradient primaryGradient = const LinearGradient(
   colors: [
     Color(0xffEF6161),
@@ -56,8 +57,6 @@ Color textGreyLight = const Color(0xff05070B).withValues(alpha: 0.90);
 Color borderStroke = const Color(0xffCCC9C9);
 
 // const Color primaryColor = Color(0xff9D696A);
-
-const Color primaryColor = Color(0xff6b45bc);
 
 const Duration animationDuration = Duration(milliseconds: 300);
 const Duration animationDurationLarge = Duration(seconds: 1);

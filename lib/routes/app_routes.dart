@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:makemylist/views/home_view.dart';
+
+import 'package:makemylist/views/main_view/main_view.dart';
 
 class AppRoutes {
-  static const String home = "/";
+  static const String main = "/";
+  
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case home:
-        return MaterialPageRoute(builder: (context) => HomeView());
+      case main:
+        return MaterialPageRoute(builder: (context) => MainView());
 
       default:
         return MaterialPageRoute(
