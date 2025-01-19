@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lucide_icons/lucide_icons.dart';
+import 'package:makemylist/views/completedView/completed_view.dart';
 import 'package:makemylist/views/home_view.dart';
 import 'package:makemylist/views/main_view/bloc/tabbar_bloc.dart';
 
@@ -64,9 +65,7 @@ class _MainViewState extends State<MainView>
           controller: _tabController,
           children: [
             HomeView(),
-            const Center(
-              child: Text("Completed Tasks"),
-            ),
+          CompletedView(),
           ],
         ),
       ),

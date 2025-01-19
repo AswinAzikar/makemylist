@@ -5,10 +5,8 @@ import 'package:makemylist/bloc/todo_bloc.dart';
 import 'package:makemylist/extensions/extensions.dart';
 import 'package:makemylist/utils/constants.dart';
 import 'package:makemylist/utils/size_utils.dart';
-import 'package:makemylist/widgets/buttons/common_button.dart';
+import 'package:makemylist/widgets/dismissible_widget/dismiss_background.dart';
 import 'package:makemylist/widgets/modal_bottom_screen/modal_bottom_sheet.dart';
-
-import '../widgets/dismissible_widget/dismiss_background.dart';
 
 class HomeView extends StatelessWidget {
   HomeView({super.key});
@@ -26,22 +24,34 @@ class HomeView extends StatelessWidget {
               itemBuilder: (context, index) {
                 final todo = state.todos[index];
                 return Padding(
-                  padding: const EdgeInsets.symmetric(
+                  padding:  EdgeInsets.symmetric(
                       horizontal: padding, vertical: padding),
                   child: Dismissible(
+
                     behavior: HitTestBehavior.translucent,
                     key: Key(todo.id.toString()),
                     direction: DismissDirection.horizontal,
                     background: DismissBackground(
+
                       alignment: Alignment.centerLeft,
-                      icon: LucideIcons.delete,
+                      icon: LucideIcons.checkCircle,
                     ),
                     secondaryBackground: DismissBackground(
+
+
+
+
                       alignment: Alignment.centerRight,
                       icon: LucideIcons.delete,
                     ),
                     onDismissed: (direction) {
-                      context.read<TodoBloc>().add(DeleteTodoEvent(todo.id!));
+                      if (direction == DismissDirection.startToEnd) {
+                        context
+                            .read<TodoBloc>()
+                            .add(MarkTaskAsCompletedEvent(todo.id!));
+                      } else {
+                        context.read<TodoBloc>().add(DeleteTodoEvent(todo.id!));
+                      }
                     },
                     child: GestureDetector(
                       onTap: () {
@@ -53,7 +63,6 @@ class HomeView extends StatelessWidget {
                               vertical: SizeUtils.height * 0.3,
                             ),
                             child: Container(
-                              //     padding: EdgeInsets.all(paddingLarge),
                               height: SizeUtils.height * 0.35,
                               width: SizeUtils.width * 0.8,
                               decoration: BoxDecoration(
@@ -64,74 +73,42 @@ class HomeView extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        height: paddingXL * 2.h,
-                                        width: double.maxFinite,
-                                        decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.only(
-                                            topLeft:
-                                                Radius.circular(paddingLarge.h),
-                                            topRight:
-                                                Radius.circular(paddingLarge.h),
-                                          ),
-                                          color: primaryColor,
-                                        ),
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Text(
-                                              todo.title,
-                                              style: context.robotoBold20
-                                                  .copyWith(
-                                                      color: Colors.white,
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                            ),
-                                          ],
-                                        ),
+                                  Container(
+                                    height: paddingXL * 2.h,
+                                    width: double.maxFinite,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft:
+                                            Radius.circular(paddingLarge.h),
+                                        topRight:
+                                            Radius.circular(paddingLarge.h),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: paddingLarge),
-                                        child: SingleChildScrollView(
-                                          child: Column(
-                                            children: [
-                                              Text(todo.description),
-                                            ],
-                                          ),
+                                      color: primaryColor,
+                                    ),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          todo.title,
+                                          style: context.robotoBold20.copyWith(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                  Spacer(),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CommonButton(
-                                        backgroundColor: primaryColor,
-                                        onTap: () => Navigator.pop(context),
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: paddingLarge.h,
-                                              vertical: padding.h),
-                                          child: Text(
-                                            "ok",
-                                            style: context.robotoRegular
-                                                .copyWith(
-                                                    color: Colors.white,
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                          ),
-                                        ),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: paddingLarge),
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          Text(todo.description),
+                                        ],
                                       ),
-                                    ],
+                                    ),
                                   ),
-                                  Spacer()
                                 ],
                               ),
                             ),
