@@ -20,7 +20,6 @@ class _MainViewState extends State<MainView>
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
 
-    // Listen to TabController and notify Bloc of index changes
     _tabController.addListener(() {
       if (_tabController.indexIsChanging) {
         context.read<TabbarBloc>().add(TabChanged(_tabController.index));
@@ -45,7 +44,6 @@ class _MainViewState extends State<MainView>
             preferredSize: const Size.fromHeight(kToolbarHeight),
             child: BlocBuilder<TabbarBloc, TabbarState>(
               builder: (context, state) {
-                // Update TabController index if Bloc state changes
                 if (state is TabSelected &&
                     _tabController.index != state.selectedIndex) {
                   _tabController.animateTo(state.selectedIndex);
